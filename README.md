@@ -15,6 +15,17 @@ Optional/Nice-to-have
 
 # Tracker
 
+## To Do
+- [x] Create data processing module
+- [x] Question generator
+- [x] Test runner
+- [x] Metrics
+- [ ] Deployment
+
+## Updates
+
+*05-07-2024 10pm*: finished question generator, assessment and results storage. Now on to deployment!
+
 *05-07-2024 6-7:30pm*: reorganised into backend, library, created quick package for organisation. 
 
 *04-07-2024 11pm*: Finished some initial set up, research and created boilerplate app.
@@ -27,9 +38,3 @@ Optional/Nice-to-have
 ![arch-2](images/arch-2.png)
 
 *04-07-2024 5pm*: Started project
-
-# To Do
-- [x] Create data processing module
-- [ ] Question generator
-- [ ] Test runner
-- [ ] Metrics

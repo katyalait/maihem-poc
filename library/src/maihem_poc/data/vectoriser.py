@@ -1,13 +1,12 @@
 """Module for creating vectorised data"""
 
 import os
-import sys
 
 import pandas as pd
 from openai import OpenAI
 from unstructured.documents.elements import CompositeElement
 
-from maihem_poc.data.loader import handle_pdf, handle_docx
+from maihem_poc.data.loader import handle_docx, handle_pdf
 
 BASE_URL = os.getenv("BASE_URL")
 API_KEY = os.getenv("API_KEY")
@@ -16,13 +15,7 @@ API_KEY = os.getenv("API_KEY")
 def get_embedding_openai(element: CompositeElement, model: str):
     client = OpenAI(base_url=BASE_URL, api_key=API_KEY)
     text = element.text.replace("\n", " ")
-    return (
-        client.embeddings.create(
-            input=[text], model=model
-        )
-        .data[0]
-        .embedding
-    )
+    return client.embeddings.create(input=[text], model=model).data[0].embedding
 
 
 def vectorise_chunks(chunks: list, embedding_function: str, **embedding_kwargs) -> list:
@@ -36,7 +29,7 @@ def vector_from_data(
     filename: str,
     file_type: str = "auto",
     embedding_function: str = "get_embedding",
-    **kwargs
+    **kwargs,
 ) -> pd.DataFrame:
 
     filename_no_path = filename.rsplit("/", maxsplit=1)[1]

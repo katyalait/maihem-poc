@@ -20,6 +20,17 @@
         .button-link:hover {
             background-color: #0056b3;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -31,13 +42,31 @@
     <a href="/get_chunks?filename={{ filename }}" class="button-link">Get Chunks</a>
     <a href="/get_questions?filename={{ filename }}" class="button-link">Get Questions</a>
     <a href="/run_test?filename={{ filename }}" class="button-link">Run Test</a>
+    <a href="/show_latest_result?filename={{ filename }}" class="button-link">Last Results</a>
 
     <div>
-        {% if data %}
-            {% for d in data %}
-                - {{ d }}
-                <br>
-            {% endfor %}
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        {% if columns and data %}
+            <table>
+                <thead>
+                    <tr>
+                        {% for column in columns %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                        <tr>
+                            {% for column in columns %}
+                                <td>{{ row[column][:500] }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         {% endif %}
     </div>
 </body>

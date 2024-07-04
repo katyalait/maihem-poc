@@ -1,13 +1,11 @@
 """Module to load and parse the data."""
-import docx
-
 from unstructured.chunking.title import chunk_by_title
-from unstructured.partition.pdf import partition_pdf
 from unstructured.partition.docx import partition_docx
+from unstructured.partition.pdf import partition_pdf
 
 
 def chunker(elements):
-    return chunk_by_title(elements, max_characters=300)
+    return chunk_by_title(elements, max_characters=500)
 
 
 def handle_pdf(file):

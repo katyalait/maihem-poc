@@ -1,16 +1,19 @@
 import os
+from urllib.parse import quote, unquote
 
 import pandas as pd
-
+from flask import Flask, redirect, render_template, request, session, url_for
+from maihem_poc.core.questions import create_questions, start_questions_test, get_latest_test_result
 from maihem_poc.data.db import get_vector_db
 from maihem_poc.data.vectoriser import create_vectordb
 
-from urllib.parse import quote, unquote
-from flask import Flask, redirect, render_template, request, url_for, session
-
+MODEL = os.getenv("MODEL")
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # Necessary for using sessions, should be a random secret key
+app.secret_key = (
+    "supersecretkey"  # Necessary for using sessions, should be a random secret key
+)
 
 
 def file_filter(filename):
@@ -25,11 +28,21 @@ def get_file_location(filename):
 def test_file():
     filename = request.args.get("filename", None)
     data = request.args.get("data", "")
+    message = ""
+    columns = ""
     if data.endswith(".csv"):
-        data = list(pd.read_csv(data)["text"])
+        df = pd.read_csv(data)
+        data = df.to_dict(orient="records")  # Convert DataFrame to list of dictionaries
+        columns = list(df.columns)
     else:
-        data = [data]
-    return render_template("testing_suite.html", filename=filename, data=data)
+        message = data
+    return render_template(
+        "testing_suite.html",
+        filename=filename,
+        data=data,
+        message=message,
+        columns=columns,
+    )
 
 
 @app.route("/")
@@ -79,6 +92,38 @@ def chunks():
 
     return redirect(url_for(".test_file", filename=filename, data=data))
 
+
+@app.route("/get_questions")
+def get_questions():
+    filename = request.args.get("filename")
+    question_df = create_questions(get_file_location(filename), model=MODEL)
+    question_df.to_csv("questions.csv", index=False)
+    data = "questions.csv"
+    return redirect(url_for(".test_file", filename=filename, data=data))
+
+
+@app.route("/run_test")
+def run_test():
+    filename = request.args.get("filename")
+    results = start_questions_test(get_file_location(filename), model=MODEL)
+    if results is None:
+        data = "Error running test, check if yu have generated the questions first!"
+    else:
+        results.to_csv("results.csv", index=False)
+        data = "results.csv"
+    return redirect(url_for(".test_file", filename=filename, data=data))
+
+
+@app.route("/show_latest_result")
+def show_latest_result():
+    filename = request.args.get("filename")
+    results = get_latest_test_result(get_file_location(filename))
+    if results is None:
+        data = "No results found, please run the tests first"
+    else:
+        results.to_csv("results.csv", index=False)
+        data = "results.csv"
+    return redirect(url_for(".test_file", filename=filename, data=data))
 
 if __name__ == "__main__":
     app.run(debug=True)
