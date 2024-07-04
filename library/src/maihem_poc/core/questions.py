@@ -77,7 +77,7 @@ def ask_questions(question_data: pd.DataFrame, model: str) -> pd.DataFrame:
 
 def run_chatbot_test(question: str):
     conversation_id = str(uuid.uuid4())
-    return send_message(conversation_id, question)
+    return send_message(conversation_id, question)["response"]
 
 
 def assess_chatbot_answer(chatbot_answer: str, question: str, expected_answer: str, reference_text: str, model: str):

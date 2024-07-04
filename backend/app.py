@@ -72,8 +72,6 @@ def create_db():
     filename = request.args.get("filename")
     create_vectordb(
         get_file_location(filename),
-        embedding_function="get_embedding_openai",
-        model="nomic-ai/nomic-embed-text-v1.5-GGUF",
     )
     return redirect(
         url_for(".test_file", filename=filename, data="Vector DB created successfully!")

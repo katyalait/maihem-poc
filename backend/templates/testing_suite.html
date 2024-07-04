@@ -61,7 +61,7 @@
                     {% for row in data %}
                         <tr>
                             {% for column in columns %}
-                                <td>{{ row[column][:500] }}</td>
+                                <td>{{ row[column]| safe }}</td>
                             {% endfor %}
                         </tr>
                     {% endfor %}
