@@ -15,7 +15,9 @@ Optional/Nice-to-have
 
 # Tracker
 
-*04-07-2024 5pm*: Started project
+*05-07-2024 6-7:30pm*: reorganised into backend, library, created quick package for organisation. 
+
+*04-07-2024 11pm*: Finished some initial set up, research and created boilerplate app.
 
 *04-07-2024 6pm*: Finalised architecture design options
 #### Option 1
@@ -24,10 +26,10 @@ Optional/Nice-to-have
 #### Option 2
 ![arch-2](images/arch-2.png)
 
-*04-07-2024 11pm*: Finished some initial set up, research and created boilerplate app.
+*04-07-2024 5pm*: Started project
 
 # To Do
-- [ ] Create data processing module
+- [x] Create data processing module
 - [ ] Question generator
 - [ ] Test runner
 - [ ] Metrics

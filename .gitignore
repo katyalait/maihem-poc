@@ -1,3 +1,6 @@
 */.env
 .idea
-!backend/src/maihem/uploads/.gitkeep
+!backend/uploads/.gitkeep
+dist/
+uploads/
+__pycache__/

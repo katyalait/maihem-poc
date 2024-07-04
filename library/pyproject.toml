@@ -1,0 +1,27 @@
+
+[tool.poetry]
+name = "maihem_poc"
+version = "0.1.0"
+description = ""
+authors = ["Katya"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.11.9"
+Flask = "3.0.3"
+Werkzeug = "3.0.3"
+Jinja2 = "3.1.4"
+zipp = "3.19.2"
+click = "8.1.7"
+MarkupSafe = "2.1.5"
+itsdangerous = "2.2.0"
+black = "24.4.2"
+flake8 = "7.1.0"
+unstructured = "^0.14.9"
+openai = "^1.35.10"
+pandas = "^2.2.2"
+isort = "^5.13.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
