@@ -5,9 +5,11 @@ FROM python:3.11-slim
 ENV PYTHONUNBUFFERED=1
 
 # Install system dependencies for tesseract and poppler-utils
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install  \
+    ffmpeg libsm6 libxext6  \
     tesseract-ocr \
     poppler-utils \
+    -y \
     && apt-get clean
 
 # Install Poetry
@@ -30,6 +32,8 @@ ENV FLASK_APP=app.py
 
 # Expose the port the app runs on
 EXPOSE 5000
+
+WORKDIR /app
 
 # Command to run the Flask app
 CMD ["poetry", "run", "flask", "run", "--host", "0.0.0.0"]

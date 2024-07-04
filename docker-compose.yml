@@ -3,10 +3,8 @@ version: '3.8'
 services:
   app:
     build:
-      context: .
+      context: backend
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
-    volumes:
-      - .:/app
+      - "5001:5000"
     command: ["poetry", "run", "flask", "run", "--host", "0.0.0.0"]
