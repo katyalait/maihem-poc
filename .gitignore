@@ -4,3 +4,6 @@
 dist/
 uploads/
 __pycache__/
+.DS_Store
+*.csv
+*.txt

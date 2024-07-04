@@ -3,8 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Testing Suite</title>
+    <style>
+        .button-link {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .button-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <a href="/">< Back</a>
+    <h1>Testing Suite</h1>
+    <h2>File: {{ filename }}</h2>
 
+    <a href="/create_vectordb?filename={{ filename }}" class="button-link">Create vectorDB</a>
+    <a href="/get_chunks?filename={{ filename }}" class="button-link">Get Chunks</a>
+    <a href="/get_questions?filename={{ filename }}" class="button-link">Get Questions</a>
+    <a href="/run_test?filename={{ filename }}" class="button-link">Run Test</a>
+
+    <div>
+        {% if data %}
+            {% for d in data %}
+                - {{ d }}
+                <br>
+            {% endfor %}
+        {% endif %}
+    </div>
 </body>
 </html>
