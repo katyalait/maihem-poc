@@ -26,10 +26,19 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-      
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-        
+
+      - name: Install system dependencies
+        run: |
+          apt-get update
+          apt-get install ffmpeg libsm6 libxext6 tesseract-ocr poppler-utils -y
+          apt-get clean
+
+      - name: Install poetry
+        run: |
+          pip install poetry
+          cd backend
+          poetry install --no-root
+
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
       - name: Zip artifact for deployment
