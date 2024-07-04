@@ -8,7 +8,6 @@ from maihem_poc.data.db import get_vector_db
 from maihem_poc.data.vectoriser import create_vectordb
 
 MODEL = os.getenv("MODEL")
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
 
 app = Flask(__name__)
 app.secret_key = (

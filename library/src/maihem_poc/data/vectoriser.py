@@ -12,12 +12,6 @@ BASE_URL = os.getenv("BASE_URL")
 API_KEY = os.getenv("API_KEY")
 
 
-def get_embedding_openai(element: CompositeElement, model: str):
-    client = OpenAI(base_url=BASE_URL, api_key=API_KEY)
-    text = element.text.replace("\n", " ")
-    return client.embeddings.create(input=[text], model=model).data[0].embedding
-
-
 def vector_from_data(
     filename: str,
     file_type: str = "auto",
