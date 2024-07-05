@@ -5,6 +5,6 @@ services:
     build:
       context: backend
       dockerfile: Dockerfile
+    platform: linux/amd64
     ports:
-      - "5001:5000"
-    command: ["poetry", "run", "flask", "run", "--host", "0.0.0.0"]
+      - "5000:5000"

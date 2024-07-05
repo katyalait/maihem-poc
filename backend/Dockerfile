@@ -1,6 +1,12 @@
 # Start with a base image that includes Python
 FROM python:3.11-slim
 
+# Create a non-root user with UID 10001
+RUN useradd -u 10001 myuser
+
+# Switch to the non-root user
+USER 10001
+
 # Set environment variables to prevent Python from writing .pyc files and to not buffer output
 ENV PYTHONUNBUFFERED=1
 
