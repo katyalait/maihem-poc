@@ -38,8 +38,8 @@ jobs:
           pip install poetry
           cd backend
           poetry install
-          cd ..
-          poetry export --without-hashes --format=requirements.txt > requirements.txt
+          poetry export --without-hashes --format=requirements.txt > ../requirements.txt
+          
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Zip artifact for deployment
