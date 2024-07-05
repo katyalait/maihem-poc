@@ -11,12 +11,12 @@ USER 10001
 ENV PYTHONUNBUFFERED=1
 
 # Install system dependencies for tesseract and poppler-utils
-RUN apt-get update && apt-get install  \
+RUN sudo apt-get update && sudo apt-get install  \
     ffmpeg libsm6 libxext6  \
     tesseract-ocr \
     poppler-utils \
     -y \
-    && apt-get clean
+    && sudo apt-get clean
 
 # Install Poetry
 RUN pip install poetry
