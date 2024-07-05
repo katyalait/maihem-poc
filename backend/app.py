@@ -1,6 +1,4 @@
 import os
-from urllib.parse import quote, unquote
-
 import pandas as pd
 from flask import Flask, redirect, render_template, request, session, url_for
 from maihem_poc.core.questions import create_questions, start_questions_test, get_latest_test_result

@@ -37,7 +37,7 @@ jobs:
         run: |
           pip install poetry
           cd backend
-          poetry install --no-root
+          poetry install
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Zip artifact for deployment
