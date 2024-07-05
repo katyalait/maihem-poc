@@ -7,7 +7,7 @@ readme = "README.md"
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "3.11.9"
+python = "3.11.8"
 Flask = "3.0.3"
 Werkzeug = "3.0.3"
 Jinja2 = "3.1.4"
@@ -17,7 +17,7 @@ MarkupSafe = "2.1.5"
 itsdangerous = "2.2.0"
 black = "24.4.2"
 flake8 = "7.1.0"
-maihem-poc = "^0.1.2"
+maihem-poc = "0.1.5"
 
 
 [build-system]

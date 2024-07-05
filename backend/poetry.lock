@@ -1246,13 +1246,13 @@ source = ["Cython (>=3.0.10)"]
 
 [[package]]
 name = "maihem-poc"
-version = "0.1.2"
+version = "0.1.5"
 description = ""
 optional = false
-python-versions = "==3.11.9"
+python-versions = "==3.11.8"
 files = [
-    {file = "maihem_poc-0.1.2-py3-none-any.whl", hash = "sha256:7b65106ffcb2ed9bc59ca3cfb10b66d0a484458e7dd5b9e9d770aa0cf7c730d6"},
-    {file = "maihem_poc-0.1.2.tar.gz", hash = "sha256:f81e1c8d74e8da38d97e2d15b6a0423c6fee6e636e9ebeb3f36f82c604536e2f"},
+    {file = "maihem_poc-0.1.5-py3-none-any.whl", hash = "sha256:2a24f947d36684de01e0493c2049453aa69d7e2ee11af68d6425852a713f7754"},
+    {file = "maihem_poc-0.1.5.tar.gz", hash = "sha256:e5bbe1d13f4dea69ee8e58c5952992fcebe0337db049c6017f09ba09252babc5"},
 ]
 
 [package.dependencies]
@@ -3778,5 +3778,5 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 
 [metadata]
 lock-version = "2.0"
-python-versions = "3.11.9"
-content-hash = "12347262f1aa06c851fa5d7feebab0405c21804768105203117f36ae97f93d3b"
+python-versions = "3.11.8"
+content-hash = "e8b08c58930e138338f1a99e1b6ac24e4b9a2888b8e849afe729cbbf928b9d3c"

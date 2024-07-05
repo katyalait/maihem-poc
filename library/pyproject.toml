@@ -1,13 +1,13 @@
 
 [tool.poetry]
-name = "maihem_poc"
-version = "0.1.2"
+name = "maihem-poc"
+version = "0.1.5"
 description = ""
 authors = ["Katya"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11.9"
+python = "3.11.8"
 Flask = "3.0.3"
 Werkzeug = "3.0.3"
 Jinja2 = "3.1.4"
