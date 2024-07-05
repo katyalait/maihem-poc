@@ -1,0 +1,5 @@
+BASE_URL=BASE_URL: https://api.runpod.ai/v2/vllm-leazrhjacoyjk0/openai/v1
+API_KEY=4ZTH2TAO2WYPL5I0D101M1ERZ4XBYBVOF4UZFY08
+MODEL=lmstudio-community/Meta-Llama-3-8B-Instruct-GGUF
+CHATBOT_ENDPOINT=https://container-rag-challenge.ambitiousbeach-b93588ea.eastus.azurecontainerapps.io/chatbot1
+CHATBOT_API_TOKEN=maihem-20240701-T,f3QO41R!4KyqXwjBWyw8XuillZkX8M
