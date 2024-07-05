@@ -4,22 +4,25 @@ FROM python:3.11-slim
 # Create a non-root user with UID 10001
 RUN useradd -u 10001 myuser
 
+# Switch to the root user for installing system dependencies
+USER root
+
+# Install system dependencies for tesseract and poppler-utils
+RUN apt-get update && apt-get install  \
+    ffmpeg libsm6 libxext6  \
+    tesseract-ocr \
+    poppler-utils \
+    -y \
+    && apt-get clean
+
+# Install Poetry
+RUN pip install poetry
+
 # Switch to the non-root user
 USER 10001
 
 # Set environment variables to prevent Python from writing .pyc files and to not buffer output
 ENV PYTHONUNBUFFERED=1
-
-# Install system dependencies for tesseract and poppler-utils
-RUN sudo apt-get update && sudo apt-get install  \
-    ffmpeg libsm6 libxext6  \
-    tesseract-ocr \
-    poppler-utils \
-    -y \
-    && sudo apt-get clean
-
-# Install Poetry
-RUN pip install poetry
 
 # Create and set the working directory
 WORKDIR /app
