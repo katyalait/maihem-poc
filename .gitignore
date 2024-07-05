@@ -9,6 +9,7 @@ __pycache__/
 *.txt
 *.docx
 *.pdf
+!requirements.txt
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

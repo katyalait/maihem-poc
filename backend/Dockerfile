@@ -15,9 +15,6 @@ RUN apt-get update && apt-get install  \
     -y \
     && apt-get clean
 
-# Install Poetry
-RUN pip install poetry
-
 # Create and set the working directory
 WORKDIR /app
 
@@ -34,10 +31,10 @@ ENV PYTHONUNBUFFERED=1
 ENV POETRY_VIRTUALENVS_PATH="/app/.venv"
 
 # Copy only the necessary files first (to leverage Docker cache)
-COPY pyproject.toml poetry.lock /app/
+COPY requirements.txt /app/
 
 # Install Python dependencies
-RUN poetry install --no-root
+RUN pip install -r requirements.txt
 
 # Copy the rest of the application code
 COPY . /app
