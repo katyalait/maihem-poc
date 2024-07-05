@@ -68,6 +68,7 @@ jobs:
 
       - name: Install poetry
         run: |
+          ls -al
           pip install -r requirements.txt
       
       - name: Login to Azure
