@@ -17,35 +17,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python version
-        uses: actions/setup-python@v1
-        with:
-          python-version: '3.11'
-
-      - name: Create and start virtual environment
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Zip artifact for deployment
         run: |
-          python -m venv venv
-          source venv/bin/activate
-
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install ffmpeg libsm6 libxext6 tesseract-ocr poppler-utils -y
-          sudo apt-get clean
-
-      - name: Install poetry
-        run: |
-          pip install poetry
           cd backend
-          poetry install
-          poetry export --without-hashes --format=requirements.txt > requirements.txt
+          zip -r ../release.zip ./*
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
         with:
           name: python-app
           path: |
-            backend/
+            release.zip
             !venv/
 
   deploy:
@@ -64,8 +47,28 @@ jobs:
           name: python-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
+        run: |
+          unzip release.zip
 
+      - name: Set up Python version
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.11'
+
+      - name: Create and start virtual environment
+        run: |
+          python -m venv antenv
+          source antenv/bin/activate
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install ffmpeg libsm6 libxext6 tesseract-ocr poppler-utils -y
+          sudo apt-get clean
+
+      - name: Install poetry
+        run: |
+          pip install -r requirements.txt
       
       - name: Login to Azure
         uses: azure/login@v1
@@ -80,4 +83,5 @@ jobs:
         with:
           app-name: 'maihem-test-katya'
           slot-name: 'Production'
+          startup-command: flask run --host 0.0.0.0 -p 8000
           
