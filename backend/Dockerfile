@@ -8,11 +8,10 @@ RUN useradd -u 10001 myuser
 USER root
 
 # Install system dependencies for tesseract and poppler-utils
-RUN apt-get update && apt-get install  \
-    ffmpeg libsm6 libxext6  \
+RUN apt-get update && apt-get install -y \
+    ffmpeg libsm6 libxext6 \
     tesseract-ocr \
     poppler-utils \
-    -y \
     && apt-get clean
 
 # Create and set the working directory
@@ -21,23 +20,23 @@ WORKDIR /app
 # Ensure the /app directory is owned by the non-root user
 RUN chown -R myuser:myuser /app
 
-# Switch to the non-root user
-USER 10001
-
-# Set environment variables to prevent Python from writing .pyc files and to not buffer output
-ENV PYTHONUNBUFFERED=1
-
-# Set environment variable for Poetry virtual environments path
-ENV POETRY_VIRTUALENVS_PATH="/app/.venv"
-
 # Copy only the necessary files first (to leverage Docker cache)
 COPY requirements.txt /app/
 
-# Install Python dependencies
+# Install Python dependencies as root user
 RUN pip install -r requirements.txt
 
 # Copy the rest of the application code
 COPY . /app
+
+# Change ownership of the home directory of the user to avoid permission issues
+RUN mkdir -p /home/myuser && chown -R myuser:myuser /home/myuser
+
+# Switch to the non-root user
+USER myuser
+
+# Set environment variables to prevent Python from writing .pyc files and to not buffer output
+ENV PYTHONUNBUFFERED=1
 
 # Set environment variables for Flask
 ENV FLASK_APP=app.py
