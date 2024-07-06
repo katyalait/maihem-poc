@@ -1,7 +1,7 @@
 
 [tool.poetry]
-name = "maihem_poc"
-version = "0.1.2"
+name = "maihem-poc"
+version = "1.0.1"
 description = ""
 authors = ["Katya"]
 readme = "README.md"

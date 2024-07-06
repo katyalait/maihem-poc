@@ -13,6 +13,12 @@ Optional/Nice-to-have
 * Basic frontend to visualise results
  
 
+## Final Config
+* [Llama3 8B](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct) deployed to [RunPod](https://www.runpod.io/) instance
+* Application deployed to DigialOcean [server](http://maihem.katyalait.com)
+* Library [maihem-poc](https://pypi.org/project/maihem-poc/) published on PyPi
+
+
 # Tracker
 
 ## To Do
@@ -20,17 +26,19 @@ Optional/Nice-to-have
 - [x] Question generator
 - [x] Test runner
 - [x] Metrics
-- [ ] Deployment
+- [x] Deployment
 
 ## Updates
 
-*05-07-2024 10pm*: finished question generator, assessment and results storage. Now on to deployment!
+*06-07-2024 10am*: Deployment complete!
 
-*05-07-2024 6-7:30pm*: reorganised into backend, library, created quick package for organisation. 
+*04-07-2024 10pm*: finished question generator, assessment and results storage. Now on to deployment!
 
-*04-07-2024 11pm*: Finished some initial set up, research and created boilerplate app.
+*04-07-2024 6-7:30pm*: reorganised into backend, library, created quick package for organisation. 
 
-*04-07-2024 6pm*: Finalised architecture design options
+*03-07-2024 11pm*: Finished some initial set up, research and created boilerplate app.
+
+*03-07-2024 6pm*: Finalised architecture design options
 #### Option 1
 ![arch-1](images/arch-1.png)
 

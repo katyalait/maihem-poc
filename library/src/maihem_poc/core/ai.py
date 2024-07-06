@@ -9,7 +9,6 @@ from openai import OpenAI
 
 BASE_URL = os.getenv("BASE_URL")
 API_KEY = os.getenv("API_KEY")
-CHATBOT_ENDPOINT = os.getenv("CHATBOT_ENDPOINT")
 CHATBOT_API_TOKEN = os.getenv("CHATBOT_API_TOKEN")
 
 
@@ -31,7 +30,7 @@ def ask_llm(system_message: str, message: str, model: str):
     return completion.choices[0].message.content
 
 
-def send_message(conversation_id, message):
+def send_message(conversation_id, message, endpoint):
     headers = {
         "Authorization": f"Bearer {CHATBOT_API_TOKEN}",
         "Content-Type": "application/json"
@@ -42,7 +41,7 @@ def send_message(conversation_id, message):
         "message": message,
     }
 
-    response = requests.post(CHATBOT_ENDPOINT, headers=headers, json=payload)
+    response = requests.post(endpoint, headers=headers, json=payload)
     return response.json()
 
 

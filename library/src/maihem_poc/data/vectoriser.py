@@ -3,10 +3,9 @@
 import os
 
 import pandas as pd
-from openai import OpenAI
-from unstructured.documents.elements import CompositeElement
 
 from maihem_poc.data.loader import handle_docx, handle_pdf
+from maihem_poc.data.db import save_file, load_file
 
 BASE_URL = os.getenv("BASE_URL")
 API_KEY = os.getenv("API_KEY")
@@ -42,4 +41,4 @@ def create_vectordb(filename: str, file_type: str = "auto"):
         if filename.endswith(".docx"):
             file_type = "docx"
     vector_df = vector_from_data(filename, file_type)
-    vector_df.to_csv(f"{filename}_vectordb.csv", index=False)
+    save_file(vector_df, filename, 'vectordb')
